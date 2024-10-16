@@ -7,20 +7,40 @@
         _adminRepository = adminRepository;
     }
 
-    // نمایش محصولات و کاربران
-    public IActionResult Index()
+    //نمایش محصولات و کاربران
+    public async Task<IActionResult> Index()
     {
-        var users = _adminRepository.GetUsers();
-        var advertisements = _adminRepository.GetAdvertisements();
-        var comments = _adminRepository.GetComments();
+        var users = await _adminRepository.GetUsersAsync();
+        var advertisements = await _adminRepository.GetAdvertisementsAsync();
+        var comments = await _adminRepository.GetCommentsAsync();
 
         var viewModel = new AdminPanel
         {
-            Users = users.ToList(),
-            Advertisements = advertisements.ToList(),
-            Comments = comments.ToList()
+            Users = users,
+            Advertisements = advertisements,
+            Comments = comments
         };
 
         return View(viewModel);
+    }
+
+    //حذف کاربران
+    public async Task<IActionResult> DeleteUser(int id)
+    {
+        var user = await _adminRepository.GetUserByIdAsync(id);
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        return View(user);
+    }
+
+    // Delete Confirm
+    [HttpPost, ActionName("Delete")]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        await _adminRepository.DeleteUserAsync(id);
+        return RedirectToAction(nameof(Index));
     }
 }

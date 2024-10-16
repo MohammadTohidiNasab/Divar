@@ -2,9 +2,12 @@
 {
     public interface IAdminRepository
     {
-        IEnumerable<User> GetUsers();
-        IEnumerable<Advertisement> GetAdvertisements();
-        IEnumerable<Comment> GetComments();
+        Task<List<User>> GetUsersAsync();
+        Task<List<Advertisement>> GetAdvertisementsAsync();
+        Task<List<Comment>> GetCommentsAsync();
+        Task<User> GetUserByIdAsync(int id);
+        Task DeleteUserAsync(int id);
     }
+
 
 }
