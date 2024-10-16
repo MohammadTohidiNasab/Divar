@@ -1,0 +1,10 @@
+﻿@model List<string>
+
+<ul>
+    @foreach (var category in Model)
+    {
+        <li>
+            <a href="@Url.Action("Index", new { category = category })">@category</a>
+        </li>
+    }
+</ul>
