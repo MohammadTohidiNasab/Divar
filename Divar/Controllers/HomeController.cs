@@ -117,9 +117,15 @@ namespace Divar.Controllers
         public async Task<IActionResult> Dashboard(int pageNumber = 1)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
-            var totalAds = await _adRepository.GetTotalAdvertisementsCountAsync();
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Account"); // یا صفحه دیگری برای کاربر
+            }
+
+            var totalAds = await _adRepository.GetTotalAdvertisementsCountAsync(); // اینجا هم بهتره بر اساس userId باشه
             var totalPages = (int)Math.Ceiling((double)totalAds / pageSize);
-            var ads = await _adRepository.GetAllAdvertisementsAsync(pageNumber, pageSize);
+
+            var ads = await _adRepository.GetAdvertisementsByUserIdAsync(userId.Value, pageNumber, pageSize);
 
             ViewBag.TotalPages = totalPages;
             ViewBag.CurrentPage = pageNumber;

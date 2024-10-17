@@ -74,5 +74,15 @@
 
             return await query.CountAsync();
         }
+
+        public async Task<IEnumerable<Advertisement>> GetAdvertisementsByUserIdAsync(int userId, int pageNumber, int pageSize)
+        {
+            return await _context.Advertisements
+                .Where(ad => ad.UserId == userId)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+        }
+
     }
 }
