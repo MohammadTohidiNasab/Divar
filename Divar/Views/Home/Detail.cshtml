@@ -1,7 +1,7 @@
 ﻿@model Advertisement
 
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,14 +13,14 @@
 <body>
     <div class="container">
         <img src="@Model.ImageUrl" alt="@Model.Title " class="article-image" loading="lazy">
-        <h1 class="article-title"> @Model.Title</h1>
+        <h1 style="text-align: center" class="article-title" > @Model.Title</h1>
         <p class="@Model.Content">
             @Model.Content
         </p>
-        <h6> <b>قیمت :</b>  @Model.Price  </h6>
+        <h6 style="text-align: center"> <b>قیمت :</b>  @Model.Price  </h6>
 
-        <h6>@Model.User?.FirstName @Model.User?.LastName<b>: نام منتشر کننده اگهی  </b> </h6>
-        <h6><b> اطلاعات تماس :</b> @Model.User?.PhoneNumber</h6> 
+        <h6 style="text-align: center">@Model.User?.FirstName @Model.User?.LastName<b>: نام منتشر کننده اگهی  </b> </h6>
+        <h6 style="text-align: center"><b> اطلاعات تماس :</b> @Model.User?.PhoneNumber</h6>
 
 
         <div class="button-group">
