@@ -1,5 +1,4 @@
-﻿using Divar.Repositories;
-namespace Divar.Controllers;
+﻿namespace Divar.Controllers;
 
 public class UserController : Controller
 {

@@ -40,6 +40,7 @@
     [HttpPost, ActionName("Delete")]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
+        HttpContext.Session.Clear();
         await _adminRepository.DeleteUserAsync(id);
         return RedirectToAction(nameof(Index));
     }
