@@ -38,6 +38,10 @@
 .button-group {
     display: flex;
     gap: 10px; /* فاصله بین دکمه‌ها */
+    justify-content: center; /* مرکز کردن در محور افقی */
+    align-items: center; /* مرکز کردن در محور عمودی (درصورت نیاز) */
+    flex-wrap: wrap; /* برای رفتن به خط بعدی در صورت نیاز */
+    margin: 20px 0; /* فضای اضافی در بالا و پایین */
 }
 
 .btn {
