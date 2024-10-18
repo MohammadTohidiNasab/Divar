@@ -84,5 +84,13 @@
                 .ToListAsync();
         }
 
+        public async Task<int> GetTotalAdvertisementsCountByUserIdAsync(int userId)
+        {
+            return await _context.Advertisements
+                .CountAsync(ad => ad.UserId == userId);
+        }
+
+
+
     }
 }

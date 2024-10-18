@@ -119,10 +119,11 @@ namespace Divar.Controllers
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
             {
-                return RedirectToAction("Login", "Account"); // یا صفحه دیگری برای کاربر
+                return RedirectToAction("Login", "Account");
             }
 
-            var totalAds = await _adRepository.GetTotalAdvertisementsCountAsync(); // اینجا هم بهتره بر اساس userId باشه
+            // حالا تعداد آگهی‌ها را بر اساس userId محاسبه می‌کنیم
+            var totalAds = await _adRepository.GetTotalAdvertisementsCountByUserIdAsync(userId.Value);
             var totalPages = (int)Math.Ceiling((double)totalAds / pageSize);
 
             var ads = await _adRepository.GetAdvertisementsByUserIdAsync(userId.Value, pageNumber, pageSize);
@@ -132,5 +133,6 @@ namespace Divar.Controllers
 
             return View(ads);
         }
+
     }
 }
