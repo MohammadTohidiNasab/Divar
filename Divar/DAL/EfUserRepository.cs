@@ -1,6 +1,4 @@
-﻿using Divar.Repositories;
-
-namespace Divar.DAL
+﻿namespace Divar.DAL
 {
     public class EfUserRepository : IUserRepository
     {
