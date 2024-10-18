@@ -90,7 +90,5 @@
                 .CountAsync(ad => ad.UserId == userId);
         }
 
-
-
     }
 }
