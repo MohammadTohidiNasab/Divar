@@ -8,6 +8,4 @@
         Task<User> GetUserByIdAsync(int id);
         Task DeleteUserAsync(int id);
     }
-
-
 }

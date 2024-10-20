@@ -12,18 +12,30 @@
 
 
 <b>
-    
+
     <h1 style="text-align: center;">
         لیست آگهی ها
     </h1>
+
+
 
     <div style="text-align: center;">
         <a asp-controller="Home" asp-action="Index">بازگشت به سایت</a>
     </div>
 
+
+    <div style="text-align: center; margin-top: 20px;">
+        <!-- دکمه‌ها برای اسکرول -->
+        <button onclick="scrollToSection('ads')">لیست آگهی‌ها</button>
+        <button onclick="scrollToSection('users')">لیست کاربران</button>
+        <button onclick="scrollToSection('comments')">کامنت‌ها</button>
+    </div>
+
 </b>
 
 
+
+<div id="ads">
 
 <table>
     <thead>
@@ -56,12 +68,13 @@
         }
     </tbody>
 </table>
-
+</div>
 
 <br />
 <hr />
 
 
+<div id="users">
 
 <b>
     <h1 style="text-align: center;">
@@ -69,6 +82,12 @@
     </h1>
 </b>
 
+    <div style="text-align: center; margin-top: 20px;">
+        <!-- دکمه‌ها برای اسکرول -->
+        <button onclick="scrollToSection('ads')">لیست آگهی‌ها</button>
+        <button onclick="scrollToSection('users')">لیست کاربران</button>
+        <button onclick="scrollToSection('comments')">کامنت‌ها</button>
+    </div>
 
 <table>
     <thead>
@@ -84,19 +103,19 @@
     <tbody>
         @foreach (var usr in Model.Users)
         {
-                <tr>
-                    <td><a asp-action="DeleteUser" asp-route-id="@usr.Id"> @usr.Id</a></td>
-                    <td>@usr.FirstName</td>
-                    <td>@usr.LastName</td>
-                    <td>@usr.Email</td>
-                    <td>@usr.PhoneNumber</td>
-                    <td>@usr.PasswordHash</td>
-                </tr>
+            <tr>
+                <td><a asp-action="DeleteUser" asp-route-id="@usr.Id"> @usr.Id</a></td>
+                <td>@usr.FirstName</td>
+                <td>@usr.LastName</td>
+                <td>@usr.Email</td>
+                <td>@usr.PhoneNumber</td>
+                <td>@usr.PasswordHash</td>
+            </tr>
         }
     </tbody>
 </table>
 
-
+</div>
 
 
 
@@ -106,12 +125,21 @@
 <hr />
 
 
+<div id="comments">
 
 <b>
     <h1 style="text-align: center;">
-         کامنت ها
+        کامنت ها
     </h1>
 </b>
+
+
+    <div style="text-align: center; margin-top: 20px;">
+        <!-- دکمه‌ها برای اسکرول -->
+        <button onclick="scrollToSection('ads')">لیست آگهی‌ها</button>
+        <button onclick="scrollToSection('users')">لیست کاربران</button>
+        <button onclick="scrollToSection('comments')">کامنت‌ها</button>
+    </div>
 
 
 <table>
@@ -135,3 +163,15 @@
         }
     </tbody>
 </table>
+
+</div>
+
+
+<script>
+    function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+</script>
