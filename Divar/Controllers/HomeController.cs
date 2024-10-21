@@ -120,7 +120,6 @@
                 return RedirectToAction("Login", "Account");
             }
 
-            // حالا تعداد آگهی‌ها را بر اساس userId محاسبه می‌کنیم
             var totalAds = await _adRepository.GetTotalAdvertisementsCountByUserIdAsync(userId.Value);
             var totalPages = (int)Math.Ceiling((double)totalAds / pageSize);
 
