@@ -1,7 +1,4 @@
-﻿using Divar.DAL;
-using Divar.Repositories;
-
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 var cnnString = builder.Configuration.GetConnectionString("DivarConnection");
 
 // Add services to the container.
