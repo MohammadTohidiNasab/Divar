@@ -1,18 +1,12 @@
-﻿ایمیل های کاربران و شماره تلفن انها
+﻿"BCrypt.Net-Next" Version="4.0.3"
+"Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10"
+"Microsoft.EntityFrameworkCore" Version="8.0.10"
+"Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10"
+"Microsoft.EntityFrameworkCore.Tools" Version="8.0.10"
 
-mohammad@gmail.com
-0910889945
 
-reza@gmail.com
-0939978589
-
-ali@gmail.com
-09185665153
-
-sajad@gmail.com
-ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ
-ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ
-
+______________________________________________________________________________________________________________
+______________________________________________________________________________________________________________
 
  مورد نیاز STORED-PROCEDURE  ساخت 
 
@@ -24,6 +18,4 @@ BEGIN
     INSERT INTO Comments (Body, CreatedDate)
     VALUES (@Body, @CreatedDate)
 END
-
-
 

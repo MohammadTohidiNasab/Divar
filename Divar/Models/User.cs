@@ -13,7 +13,7 @@
         [MaxLength(50)]
         [Required(ErrorMessage = "وارد کردن ایمیل الزامی است")]
         public string Email { get; set; }
-        [MaxLength(100)]
+        [MaxLength(12)]
         [Required(ErrorMessage = "وارد کردن شماره تلفن الزامی است")]
         public string PhoneNumber { get; set; }
         [MaxLength(100)]
