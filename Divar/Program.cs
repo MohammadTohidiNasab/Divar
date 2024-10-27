@@ -1,21 +1,24 @@
 ﻿var builder = WebApplication.CreateBuilder(args);
+
 var cnnString = builder.Configuration.GetConnectionString("DivarConnection");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DivarDbContext>(options => options.UseSqlServer(cnnString));
-builder.Services.AddMemoryCache();//base for session
-builder.Services.AddSession(); //add Session services to project
-builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<DivarDbContext>().AddDefaultTokenProviders();
-//my services 
+builder.Services.AddMemoryCache();
+builder.Services.AddSession(); // Add Session services to project
+
+// Identity and role management
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<DivarDbContext>()
+    .AddDefaultTokenProviders();
+
+// Register repositories
 builder.Services.AddScoped<IAdminRepository, EfAdminRepository>();
 builder.Services.AddScoped<IAdvertisementRepository, EfAdvertisementRepository>();
 builder.Services.AddScoped<IUserRepository, EfUserRepository>();
+
 var app = builder.Build();
-
-
-
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -24,20 +27,22 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+else
+{
+    app.UseDeveloperExceptionPage();
+}
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseDeveloperExceptionPage();
-app.UseSession(); //add session to app
+
 app.UseRouting();
 
-app.UseAuthorization();
+app.UseSession(); // Add session to app
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-
 
 app.Run();
