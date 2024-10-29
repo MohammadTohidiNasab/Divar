@@ -2,10 +2,12 @@
 
 <link href="~/css/Register.css" rel="stylesheet" />
 
-<b><h1 style="text-align: center;">
-    ثبت نام کاربر
-</h1></b>
+<b><h1 style="text-align: center;">ثبت نام کاربر</h1></b>
 
+<!-- Loader -->
+<div id="loader" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;">
+    <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite;"></div>
+</div>
 
 
 <form id="registrationForm" asp-action="Register" method="post">
@@ -46,8 +48,6 @@
     <button type="submit">ثبت‌نام</button>
 </form>
 
-
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -67,6 +67,10 @@
             // If there are empty fields, prevent form submission
             if (!isValid) {
                 e.preventDefault(); 
+            } else {
+                // Show loader and prevent multiple submissions
+                $('#loader').show(); // Show loader
+                $(this).find('button[type="submit"]').prop('disabled', true); // Disable submission button
             }
         });
     });
