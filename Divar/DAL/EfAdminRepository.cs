@@ -1,6 +1,4 @@
-﻿using Divar.DAL;
-
-public class EfAdminRepository : IAdminRepository
+﻿public class EfAdminRepository : IAdminRepository
 {
     private readonly DivarDbContext _context;
 
@@ -29,16 +27,24 @@ public class EfAdminRepository : IAdminRepository
         return await _context.Users.FindAsync(id);
     }
 
-    public async Task DeleteUserAsync(int id)
+
+    public async Task DeleteUserAsync(int id, HttpContext httpContext)
     {
         var user = await GetUserByIdAsync(id);
         if (user != null)
         {
             var advertisements = _context.Advertisements.Where(a => a.UserId == id);
             _context.Advertisements.RemoveRange(advertisements);
-
             _context.Users.Remove(user);
+
+            // پاک کردن سشن فقط برای کاربر حذف شده
+            if (httpContext.Session.GetInt32("UserId") == id)
+            {
+                httpContext.Session.Clear();
+            }
+
             await _context.SaveChangesAsync();
         }
     }
+
 }

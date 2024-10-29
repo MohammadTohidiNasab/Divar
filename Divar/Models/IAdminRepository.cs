@@ -6,6 +6,6 @@
         Task<List<Advertisement>> GetAdvertisementsAsync();
         Task<List<Comment>> GetCommentsAsync();
         Task<User> GetUserByIdAsync(int id);
-        Task DeleteUserAsync(int id);
+        Task DeleteUserAsync(int id, HttpContext httpContext);
     }
 }
